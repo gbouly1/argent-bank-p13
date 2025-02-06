@@ -1,8 +1,8 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setCredentials } from "../../feature/auth.slice";
+import { setAuthToken } from "../../feature/auth.slice";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -22,7 +22,7 @@ const SignIn = () => {
         }
       );
 
-      dispatch(setCredentials(response.data));
+      dispatch(setAuthToken(response.data));
       navigate("/user"); // Redirection après connexion réussie
     } catch (error) {
       console.error("Erreur de connexion :", error.response?.data?.message);
