@@ -1,3 +1,7 @@
+import chatIcon from "../../assets/img/icon-chat.png";
+import moneyIcon from "../../assets/img/icon-money.png";
+import securityIcon from "../../assets/img/icon-security.png";
+
 const Home = () => {
   return (
     <main>
@@ -13,11 +17,7 @@ const Home = () => {
       <section className="features">
         <h2 className="sr-only">Features</h2>
         <div className="feature-item">
-          <img
-            src="./assets/img/icon-chat.png"
-            alt="Chat Icon"
-            className="feature-icon"
-          />
+          <img src={chatIcon} alt="Chat Icon" className="feature-icon" />
           <h3 className="feature-item-title">You are our #1 priority</h3>
           <p>
             Need to talk to a representative? You can get in touch through our
@@ -25,11 +25,7 @@ const Home = () => {
           </p>
         </div>
         <div className="feature-item">
-          <img
-            src="./assets/img/icon-money.png"
-            alt="Money Icon"
-            className="feature-icon"
-          />
+          <img src={moneyIcon} alt="Money Icon" className="feature-icon" />
           <h3 className="feature-item-title">
             More savings means higher rates
           </h3>
@@ -39,7 +35,7 @@ const Home = () => {
         </div>
         <div className="feature-item">
           <img
-            src="./assets/img/icon-security.png"
+            src={securityIcon}
             alt="Security Icon"
             className="feature-icon"
           />
