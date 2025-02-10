@@ -18,8 +18,17 @@ const userSlice = createSlice({
         state.userInfo.lastName = lastName;
       }
     },
+    resetUserInfo: (state) => {
+      state.userInfo = null; // Réinitialise les infos utilisateur
+    },
+    logout: (state) => {
+      state.TokenAuth = null;
+      state.userInfo = null;
+      localStorage.removeItem("TokenAuth");
+    },
   },
 });
 
-export const { setUserInfo, updateUserName } = userSlice.actions;
+export const { setUserInfo, updateUserName, resetUserInfo, logout } =
+  userSlice.actions;
 export default userSlice.reducer;

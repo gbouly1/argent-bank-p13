@@ -18,9 +18,9 @@ const authSlice = createSlice({
         JSON.stringify(action.payload.body.token)
       );
     },
-    // setUserInfo: (state, action) => {
-    //   state.userInfo = action.payload.body;
-    // },
+    setUserInfo: (state, action) => {
+      state.userInfo = action.payload.body;
+    },
     logout: (state) => {
       state.TokenAuth = null;
       state.userInfo = null;

@@ -43,7 +43,7 @@ const User = () => {
   useEffect(() => {
     if (!TokenAuth) {
       navigate("/signin");
-    } else if (!userInfo) {
+    } else {
       axios
         .post(
           "http://localhost:3001/api/v1/user/profile",
@@ -51,7 +51,7 @@ const User = () => {
           { headers: { Authorization: `Bearer ${TokenAuth}` } }
         )
         .then((res) => {
-          dispatch(setUser(res.data));
+          dispatch(setUser(res.data)); // Met à jour Redux avec les nouvelles données
           setFirstName(res.data.firstName);
           setLastName(res.data.lastName);
         })
@@ -59,11 +59,8 @@ const User = () => {
           dispatch(logout());
           navigate("/signin");
         });
-    } else {
-      setFirstName(userInfo.firstName);
-      setLastName(userInfo.lastName);
     }
-  }, [TokenAuth, userInfo, dispatch, navigate]);
+  }, [TokenAuth, dispatch, navigate]);
 
   const handleSave = () => {
     axios
@@ -92,7 +89,9 @@ const User = () => {
   return (
     <main className="main bg-dark">
       <div className="header">
-        <h1>Welcome back</h1>
+        <h1>
+          Welcome back, {userInfo.body.firstName} {userInfo.body.lastName}
+        </h1>
         {isEditing ? (
           <div className="edit-name">
             <input

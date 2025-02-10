@@ -23,6 +23,7 @@ const SignIn = () => {
       );
 
       dispatch(setAuthToken(response.data));
+
       navigate("/user"); // Redirection après connexion réussie
     } catch (error) {
       console.error("Erreur de connexion :", error.response?.data?.message);
