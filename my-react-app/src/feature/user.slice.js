@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  userInfo: null, // Informations utilisateur
+  userInfo: null,
 };
 
 const userSlice = createSlice({
@@ -21,14 +21,8 @@ const userSlice = createSlice({
     resetUserInfo: (state) => {
       state.userInfo = null; // Réinitialise les infos utilisateur
     },
-    logout: (state) => {
-      state.TokenAuth = null;
-      state.userInfo = null;
-      localStorage.removeItem("TokenAuth");
-    },
   },
 });
 
-export const { setUserInfo, updateUserName, resetUserInfo, logout } =
-  userSlice.actions;
+export const { setUserInfo, updateUserName, resetUserInfo } = userSlice.actions;
 export default userSlice.reducer;
