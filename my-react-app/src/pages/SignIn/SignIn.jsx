@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setAuthToken } from "../../feature/auth.slice";
+import { resetUserInfo } from "../../feature/user.slice";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -23,6 +24,7 @@ const SignIn = () => {
       );
 
       dispatch(setAuthToken(response.data));
+      dispatch(resetUserInfo()); // Réinitialiser les infos utilisateur au cas où
 
       navigate("/user"); // Redirection après connexion réussie
     } catch (error) {

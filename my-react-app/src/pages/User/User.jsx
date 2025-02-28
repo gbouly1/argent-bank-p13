@@ -3,10 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../feature/auth.slice";
-import {
-  setUserInfo as setUser,
-  updateUserName,
-} from "../../feature/user.slice";
+import { setUserInfo, updateUserName } from "../../feature/user.slice";
 
 const User = () => {
   const dispatch = useDispatch();
@@ -51,9 +48,10 @@ const User = () => {
           { headers: { Authorization: `Bearer ${TokenAuth}` } }
         )
         .then((res) => {
-          dispatch(setUser(res.data)); // Met à jour Redux avec les nouvelles données
-          setFirstName(res.data.firstName);
-          setLastName(res.data.lastName);
+          // Stocke les données de l'utilisateur directement (sans le wrapper body)
+          dispatch(setUserInfo(res.data.body));
+          setFirstName(res.data.body.firstName);
+          setLastName(res.data.body.lastName);
         })
         .catch(() => {
           dispatch(logout());
@@ -79,8 +77,11 @@ const User = () => {
   };
 
   const handleCancel = () => {
-    setFirstName(userInfo.firstName);
-    setLastName(userInfo.lastName);
+    // S'assure que userInfo existe avant d'y accéder
+    if (userInfo) {
+      setFirstName(userInfo.firstName);
+      setLastName(userInfo.lastName);
+    }
     setIsEditing(false);
   };
 
@@ -90,7 +91,7 @@ const User = () => {
     <main className="main bg-dark">
       <div className="header">
         <h1>
-          Welcome back, {userInfo.body.firstName} {userInfo.body.lastName}
+          Welcome back, {userInfo.firstName} {userInfo.lastName}
         </h1>
         {isEditing ? (
           <div className="edit-name">
@@ -117,9 +118,6 @@ const User = () => {
           </div>
         ) : (
           <div>
-            <h2>
-              {userInfo.firstName} {userInfo.lastName}
-            </h2>
             <button className="edit-button" onClick={() => setIsEditing(true)}>
               Edit Name
             </button>

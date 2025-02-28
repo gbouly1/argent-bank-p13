@@ -4,7 +4,6 @@ const initialState = {
   TokenAuth: localStorage.getItem("TokenAuth")
     ? JSON.parse(localStorage.getItem("TokenAuth"))
     : null,
-  userInfo: null,
 };
 
 const authSlice = createSlice({
@@ -18,17 +17,13 @@ const authSlice = createSlice({
         JSON.stringify(action.payload.body.token)
       );
     },
-    setUserInfo: (state, action) => {
-      state.userInfo = action.payload.body;
-    },
     logout: (state) => {
       state.TokenAuth = null;
-      state.userInfo = null;
       localStorage.removeItem("TokenAuth");
     },
   },
 });
 
-export const { setAuthToken, logout, setUserInfo } = authSlice.actions;
+export const { setAuthToken, logout } = authSlice.actions;
 
 export default authSlice.reducer;

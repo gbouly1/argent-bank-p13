@@ -9,6 +9,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUserInfo: (state, action) => {
+      // Stocke directement les données de l'utilisateur (sans le wrapper body)
       state.userInfo = action.payload;
     },
     updateUserName: (state, action) => {
