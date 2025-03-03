@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../feature/auth.slice";
 import { setUserInfo, updateUserName } from "../../feature/user.slice";
+import "./user.css";
 
 const User = () => {
   const dispatch = useDispatch();
@@ -90,8 +91,8 @@ const User = () => {
   return (
     <main className="main bg-dark">
       <div className="header">
-        <h1>
-          Welcome back, {userInfo.firstName} {userInfo.lastName}
+        <h1 className="title-name">
+          Welcome back {userInfo.firstName} {userInfo.lastName} !
         </h1>
         {isEditing ? (
           <div className="edit-name">

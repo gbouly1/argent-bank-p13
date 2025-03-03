@@ -1,0 +1,8 @@
+.main-nav-item {
+  border: none;
+  background: none;
+  color: #2c3e50;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: medium;
+}
